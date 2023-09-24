@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Morse Code Sender</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      text-align: center;
+    }
+    .container {
+      margin: 0 auto;
+      padding: 20px;
+      max-width: 600px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      color: #0f90c4;
+      font-size: 2.4rem;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-size: 1.2rem;
+      
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 0;
+ 
+    margin: 10px 0 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 16px;
+      border-radius: 6px;
+    }
+  
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #4e84bd;
+      color: #ffffff;
+      border: none;
+      border-radius: 3px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      border-radius: 6px;
+      
+    }
+    #output {
+      display: none;
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    img {
+      max-width: 100%;
+    }
+    .graphic-button {
+      background-color: #717880;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+   #output > #morseOutput{
+        font-size: 2.4rem;
+        color: #496077;
+    }
+    img{
+        border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fa-solid fa-code-compare fa-beat-fade" style="color: #1d4f67;"></i> Morse Code Sender</h1>
+    <form action="#" method="POST" id="morseForm">
+      <label for="englishText">Enter English Text:</label>
+      <input type="text" name="englishText" id="englishText" required>
+      <input type="submit" value="Convert to Morse Code">
+    </form>
+    <div id="output">
+      <h2>Morse Code:</h2>
+      <p id="morseOutput"></p>
+    </div>
+    <br>
+    <img src="https://shop.iwm.org.uk/images/product/international%20morse%20code%20translation%20learning%20metal%20wall%20sign-1648637800.jpg" alt="Internet Image" width="300">
+    <br><br>
+    <button class="graphic-button" onclick="showGraphic()">Click Me!</button>
+    <div id="graphic" style="display: none;">
+      <img src="https://cdn.britannica.com/00/192200-050-8847FCB9/key-telegraph-Morse-1860.jpg?w=400&h=300&c=crop" alt="Internet Graphic" width="300">
+    </div>
+  </div>
+  <script>
+    // Morse code dictionary
+    const morseCode = {
+      'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.',
+      'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
+      'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---',
+      'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-',
+      'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--',
+      'Z': '--..', '0': '-----', '1': '.----', '2': '..---', '3': '...--',
+      '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..',
+      '9': '----.', ' ': ' '
+    };
+
+    function showGraphic() {
+      const graphicDiv = document.querySelector("#graphic");
+      if (graphicDiv.style.display === "none") {
+        graphicDiv.style.display = "block";
+      } else {
+        graphicDiv.style.display = "none";
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const morseForm = document.querySelector("#morseForm");
+      const englishText = document.querySelector("#englishText");
+      const outputDiv = document.querySelector("#output");
+      const morseOutput = document.querySelector("#morseOutput");
+
+      morseForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const userText = englishText.value.toUpperCase();
+        const morseText = convertTextToMorse(userText);
+        morseOutput.textContent = morseText;
+        outputDiv.style.display = "block";
+      });
+
+      function convertTextToMorse(text) {
+        let morseText = '';
+        for (let i = 0; i < text.length; i++) {
+          const char = text.charAt(i);
+          if (morseCode[char]) {
+            morseText += morseCode[char] + ' ';
+          }
+        }
+        return morseText.trim();
+      }
+    });
+  </script>
+</body>
+</html>
