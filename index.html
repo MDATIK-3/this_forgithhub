@@ -30,7 +30,7 @@
       
     }
     input[type="text"] {
-      width: 100%;
+      width: 95%;
       padding: 10px 0;
  
     margin: 10px 0 15px 0;
@@ -39,6 +39,8 @@
       font-size: 16px;
       border-radius: 6px;
     }
+  
+ 
   
     input[type="submit"] {
       width: 100%;
@@ -79,6 +81,24 @@
     }
     img{
         border-radius: 10px;
+    }
+    #englishText{
+      padding: 10px;
+     
+    }
+    #graphic img{
+      animation-name: moveLeftToRight; /* Name of the animation */
+  animation-duration: 2s; /* Duration of the animation */
+  animation-timing-function: linear; /* Linear timing for smooth movement */
+  animation-iteration-count: infinite;
+    }
+    @keyframes moveLeftToRight {
+      0% {
+        transform: translateX(0); /* Start position, no translation */
+      }
+      12% {
+        transform: translateX(50%); /* End position, move 100% to the right */
+      }
     }
   </style>
 </head>
